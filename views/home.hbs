@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/home.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>My Contacts</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="/login" class="add-contact">Добавить контакт</a>
+      <a href="/login" class="logout">Выйти</a>
+    </header>
+    <main class="main">
+      <section class="contacts-container">
+        <div class="contacts_top-container">
+          <h3 class="contacts-header">Мои Контакты</h3>
+          <select class="sorting">
+            <option value="Имя" selected >Имя</option>
+            {{#each fields}}
+              <option value="{{ this }}">{{ this }}</option>
+            {{/each}}
+          </select>
+        </div>
+          {{#if contacts.length}}
+            <article class="contacts-list">
+              {{#each contacts}}
+                <div class="contact-card" id={{ this._id }}>
+                  <div class="contact-card__name"> {{ this.Имя }} </div>
+                  <div class="contact-card__options">
+                    <a href="" class="edit hidden-prop">Редактировать</a>
+                    <span class="material-icons dots">more_horiz</span>
+                    <a href="" class="remove hidden-prop">Удалить</a>
+                  </div>
+                </div>
+              {{/each}}
+            </article>
+          {{else}}
+            <article class="contacts-list contact-list_empty">
+              <p class="message-empty">Добавьте свой первый контакт!</p>
+            </article>
+          {{/if}}
+      </section>
+
+      <div class="add-form_container hidden">
+        <div class="add-form">
+          <span class="material-icons close-add-contact">highlight_off</span>
+          <span class="material-icons submit-add-contact">add_circle_outline</span>
+          <p class="added-success_message hidden">Запись успешно добалена!</p>
+          <p class="failed-success_message hidden">Не удалось добавить запись!</p>
+          <div class="primary-fields">
+            <div class="input-value">
+              <label for="Имя">Имя: </label>
+              <input type="text" name="Имя">
+            </div>
+            <div class="input-value">
+              <label for="Телефон">Телефон: </label>
+              <input type="tel" name="Телефон" autocomplete="off">
+            </div>
+          </div>
+          <div class="added-fields">
+            
+          </div>
+          <a href="/" class="add-field">Добавить поле</a>
+        </div>
+      </div>
+
+      <div class="add-form_container contact-info__container hidden">
+        <div class="contact-info">
+          <span class="material-icons close-info">highlight_off</span>
+          <h3 class="contact-info__name">Имя пользователя</h3>
+          <table class="fields">
+
+          </table>
+          <div class="contact-card__info">
+            <a href="/" class="edit edit-info">Редактировать</a>
+            <a href="/" class="remove remove-info">Удалить</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="add-form_container contact-edit__container hidden">
+        <div class="contact-edit">
+          <span class="material-icons close-edit">highlight_off</span>
+          <span class="material-icons submit-edit-contact">add_circle_outline</span>
+          <p class="edit-success_message hidden">Контакт успешно обновлен!</p>
+          <p class="edit-failed_message hidden">Не удалось обновить контакт!</p>
+          <div class="fields-edit">
+            
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <script src="/js/home.js"></script>
+  </body>
+</html>
